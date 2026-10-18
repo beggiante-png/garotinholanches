@@ -585,72 +585,72 @@ textarea:focus,input:focus{outline:none;border-color:var(--blue)}
 
   // ---------- cardápio ----------
   const CATS = [
-    {id:'burgers', name:'Hambúrgueres', eyebrow:'Pão e bife', note:'Todos com tomate, alface, milho, batata e molho Garotinho.'},
-    {id:'coco', name:'Cocó', eyebrow:'Pão e frango', note:'Todos com tomate, alface, milho, batata e molho Garotinho.'},
-    {id:'picanha', name:'Picanha', eyebrow:'Pão e picanha', note:'Todos com tomate, alface, milho, batata e molho Garotinho.'},
-    {id:'mistos', name:'Mistos', eyebrow:'No pão de forma', note:'Todos com tomate, alface, milho, batata e molho Garotinho.'},
+    {id:'burgers', name:'Hambúrgueres', eyebrow:'Pão e bife', note:'Todos com tomate, alface, milho e batata.'},
+    {id:'coco', name:'Cocó', eyebrow:'Pão e frango', note:'Todos com tomate, alface, milho e batata.'},
+    {id:'picanha', name:'Picanha', eyebrow:'Pão e picanha', note:'Todos com tomate, alface, milho e batata.'},
+    {id:'mistos', name:'Mistos', eyebrow:'No pão de forma', note:'Todos com tomate, alface, milho e batata.'},
     {id:'especiais', name:'Especiais', eyebrow:'Para quem tem fome', note:'Os mais caprichados da casa.'},
     {id:'espaguete', name:'Espaguete na chapa', eyebrow:'Tamanho M ou G', note:'Feito na chapa, com molho de tomate e queijo.'},
   ];
-  const OPC = ['Tomate','Alface','Milho','Batata','Molho Garotinho'];
-  const EXTRAS = [['Cheddar', 5.5], ['Catupiry', 5], ['Maionese temperada', 2.3]];
+  const OPC = ['Tomate','Alface','Milho','Batata'];
+  const EXTRAS = [['Cheddar', 5], ['Catupiry', 5], ['Maionese temperada', 2.5]];
   const exPrice = n => (EXTRAS.find(e => e[0] === n) || [0, 0])[1];
   const L = (cat, num, name, price, ing, extra = {}) => ({id:'p' + num, num, cat, name, price, ing, ...extra});
   const F = {forma:1};
   const P = [
-    L('burgers',1,'Hamburguer',11,['Bife']),
-    L('burgers',2,'X Burguer',14.5,['Bife','Queijo']),
-    L('burgers',3,'Egg Burguer',14.5,['Bife','Ovo']),
-    L('burgers',4,'Bacon Burguer',15.5,['Bife','Bacon']),
-    L('burgers',5,'Hamburgão',15.5,['2 bifes','Queijo']),
-    L('burgers',6,'X Egg Burguer',15.5,['Bife','Queijo','Ovo']),
-    L('burgers',7,'X Bacon',16.5,['Bife','Queijo','Bacon']),
-    L('burgers',8,'X Salada',15.5,['Bife','Queijo','Presunto']),
-    L('burgers',9,'X Calabresa',15.5,['Bife','Queijo','Calabresa']),
-    L('burgers',10,'Egg Bacon',15.5,['Bife','Ovo','Bacon']),
-    L('burgers',11,'Egg Calabresa',15.5,['Bife','Ovo','Calabresa']),
-    L('burgers',12,'Egg Bacon Calabresa',17.5,['Bife','Ovo','Bacon','Calabresa']),
-    L('burgers',13,'X Egg Bacon',16.5,['Bife','Queijo','Ovo','Bacon']),
-    L('burgers',14,'X Egg Calabresa',16.5,['Bife','Ovo','Queijo','Calabresa']),
-    L('burgers',15,'X Bacon Calabresa',17.5,['Bife','Bacon','Queijo','Calabresa']),
-    L('burgers',16,'X Egg Bacon Calabresa',18.5,['Bife','Bacon','Queijo','Ovo','Calabresa']),
-    L('especiais',17,'X Tudo',19,['Bife','Bacon','Queijo','Ovo','Presunto','Calabresa']),
-    L('especiais',18,'Lanchão',22,['2 bifes','Bacon','Queijo','2 ovos','Presunto','Calabresa']),
-    L('especiais',19,'Americano',17,['Bife','Queijo','Ovo','Presunto'],F),
-    L('especiais',20,'Bauru',18,['Bife','Queijo','Ovo','Presunto','Bacon'],F),
-    L('coco',21,'Cocó',14.5,['Frango']),
-    L('coco',22,'X Cocó',15.5,['Frango','Queijo']),
-    L('coco',23,'Cocó Egg',15.5,['Frango','Ovo']),
-    L('coco',24,'Cocó Bacon',17.5,['Frango','Bacon']),
-    L('coco',25,'Cocó Calabresa',16.5,['Frango','Calabresa']),
-    L('coco',26,'X Cocó Egg',17.5,['Frango','Queijo','Ovo']),
-    L('coco',27,'X Cocó Bacon',17.5,['Frango','Queijo','Bacon']),
-    L('coco',28,'X Cocó Calabresa',17.5,['Frango','Queijo','Calabresa']),
-    L('coco',29,'X Cocó Egg Bacon',18.5,['Frango','Queijo','Ovo','Bacon']),
-    L('coco',30,'X Cocó Egg Calabresa',19,['Frango','Queijo','Ovo','Calabresa']),
-    L('coco',31,'X Cocó Bacon Calabresa',19,['Frango','Queijo','Bacon','Calabresa']),
-    L('coco',32,'X Cocó Salada',17.5,['Frango','Queijo','Presunto']),
-    L('especiais',33,'X Tudo Cocó',23,['Frango','Queijo','Presunto','Bacon','Ovo','Calabresa']),
-    L('especiais',34,'Lanchão Cocó',25,['2 frangos','Queijo','Presunto','Bacon','2 ovos','Calabresa']),
-    L('mistos',35,'Misto',12.5,['Queijo','Presunto'],F),
-    L('mistos',36,'Misto Egg',14.5,['Queijo','Presunto','Ovo'],F),
-    L('mistos',37,'Misto Burguer',15.5,['Bife','Queijo','Presunto'],F),
-    L('mistos',38,'Misto Bacon',15.5,['Queijo','Presunto','Bacon'],F),
-    L('mistos',39,'Misto Bacon Calabresa',17.5,['Queijo','Presunto','Bacon','Calabresa'],F),
-    L('mistos',40,'Misto Calabresa',15.5,['Queijo','Presunto','Calabresa'],F),
-    L('mistos',41,'Misto Cocó',17,['Queijo','Presunto','Frango'],F),
-    L('picanha',42,'Picanha Burguer',17.5,['Picanha']),
-    L('picanha',43,'X Picanha',18.5,['Picanha','Queijo']),
-    L('picanha',44,'Picanha Bacon',19,['Picanha','Bacon']),
-    L('picanha',45,'Picanha Egg',19,['Picanha','Ovo']),
-    L('picanha',46,'X Picanha Bacon',19.5,['Picanha','Queijo','Bacon']),
-    L('picanha',47,'X Picanha Egg',19.5,['Picanha','Queijo','Ovo']),
-    L('picanha',48,'Picanha Egg Bacon',19.5,['Picanha','Ovo','Bacon']),
-    L('picanha',49,'X Picanha Egg Bacon',20.5,['Picanha','Queijo','Ovo','Bacon']),
-    L('especiais',50,'X Tudo Picanha',24,['Picanha','Queijo','Ovo','Presunto','Bacon','Calabresa']),
-    L('especiais',51,'Lanchão Picanha',27,['2 picanhas','Queijo','2 ovos','Presunto','Bacon','Calabresa']),
+    L('burgers',1,'Hamburguer',14,['Bife']),
+    L('burgers',2,'X Burguer',17.5,['Bife','Queijo']),
+    L('burgers',3,'Egg Burguer',17.5,['Bife','Ovo']),
+    L('burgers',4,'Bacon Burguer',18.5,['Bife','Bacon']),
+    L('burgers',5,'Hamburgão',18.5,['2 bifes','Queijo']),
+    L('burgers',6,'X Egg Burguer',18.5,['Bife','Queijo','Ovo']),
+    L('burgers',7,'X Bacon',18.5,['Bife','Queijo','Bacon']),
+    L('burgers',8,'X Salada',18.5,['Bife','Queijo','Presunto']),
+    L('burgers',9,'X Calabresa',18.5,['Bife','Queijo','Calabresa']),
+    L('burgers',10,'Egg Bacon',18.5,['Bife','Ovo','Bacon']),
+    L('burgers',11,'Egg Calabresa',18.5,['Bife','Ovo','Calabresa']),
+    L('burgers',12,'Egg Bacon Calabresa',20.5,['Bife','Ovo','Bacon','Calabresa']),
+    L('burgers',13,'X Egg Bacon',19.5,['Bife','Queijo','Ovo','Bacon']),
+    L('burgers',14,'X Egg Calabresa',19.5,['Bife','Ovo','Queijo','Calabresa']),
+    L('burgers',15,'X Bacon Calabresa',20.5,['Bife','Bacon','Queijo','Calabresa']),
+    L('burgers',16,'X Egg Bacon Calabresa',21.5,['Bife','Bacon','Queijo','Ovo','Calabresa']),
+    L('especiais',17,'X Tudo',25,['Bife','Bacon','Queijo','Ovo','Presunto','Calabresa']),
+    L('especiais',18,'Lanchão',29,['2 bifes','Bacon','Queijo','2 ovos','Presunto','Calabresa']),
+    L('especiais',19,'Americano',20,['Bife','Queijo','Ovo','Presunto'],F),
+    L('especiais',20,'Bauru',21,['Bife','Queijo','Ovo','Presunto','Bacon'],F),
+    L('coco',21,'Cocó',18.5,['Frango']),
+    L('coco',22,'X Cocó',18.5,['Frango','Queijo']),
+    L('coco',23,'Cocó Egg',20.5,['Frango','Ovo']),
+    L('coco',24,'Cocó Bacon',20.5,['Frango','Bacon']),
+    L('coco',25,'Cocó Calabresa',20.5,['Frango','Calabresa']),
+    L('coco',26,'X Cocó Egg',19.5,['Frango','Queijo','Ovo']),
+    L('coco',27,'X Cocó Bacon',19.5,['Frango','Queijo','Bacon']),
+    L('coco',28,'X Cocó Calabresa',21.5,['Frango','Queijo','Calabresa']),
+    L('coco',29,'X Cocó Egg Bacon',21.5,['Frango','Queijo','Ovo','Bacon']),
+    L('coco',30,'X Cocó Egg Calabresa',22,['Frango','Queijo','Ovo','Calabresa']),
+    L('coco',31,'X Cocó Bacon Calabresa',22,['Frango','Queijo','Bacon','Calabresa']),
+    L('coco',32,'X Cocó Salada',20.5,['Frango','Queijo','Presunto']),
+    L('especiais',33,'X Tudo Cocó',27,['Frango','Queijo','Presunto','Bacon','Ovo','Calabresa']),
+    L('especiais',34,'Lanchão Cocó',30,['2 frangos','Queijo','Presunto','Bacon','2 ovos','Calabresa']),
+    L('mistos',35,'Misto',15.5,['Queijo','Presunto'],F),
+    L('mistos',36,'Misto Egg',17.5,['Queijo','Presunto','Ovo'],F),
+    L('mistos',37,'Misto Burguer',18.5,['Bife','Queijo','Presunto'],F),
+    L('mistos',38,'Misto Bacon',18.5,['Queijo','Presunto','Bacon'],F),
+    L('mistos',39,'Misto Bacon Calabresa',18.5,['Queijo','Presunto','Bacon','Calabresa'],F),
+    L('mistos',40,'Misto Calabresa',20.5,['Queijo','Presunto','Calabresa'],F),
+    L('mistos',41,'Misto Cocó',20,['Queijo','Presunto','Frango'],F),
+    L('picanha',42,'Picanha Burguer',20.5,['Picanha']),
+    L('picanha',43,'X Picanha',21.5,['Picanha','Queijo']),
+    L('picanha',44,'Picanha Bacon',22,['Picanha','Bacon']),
+    L('picanha',45,'Picanha Egg',22,['Picanha','Ovo']),
+    L('picanha',46,'X Picanha Bacon',22.5,['Picanha','Queijo','Bacon']),
+    L('picanha',47,'X Picanha Egg',22.5,['Picanha','Queijo','Ovo']),
+    L('picanha',48,'Picanha Egg Bacon',22.5,['Picanha','Ovo','Bacon']),
+    L('picanha',49,'X Picanha Egg Bacon',23.5,['Picanha','Queijo','Ovo','Bacon']),
+    L('especiais',50,'X Tudo Picanha',29,['Picanha','Queijo','Ovo','Presunto','Bacon','Calabresa']),
+    L('especiais',51,'Lanchão Picanha',34,['2 picanhas','Queijo','2 ovos','Presunto','Bacon','Calabresa']),
   ];
-  const ESP = (num, ing) => ({id:'e' + num, num, cat:'espaguete', name:'Espaguete ' + pad(num), price:18, sizes:{M:18, G:20}, ing:['Espaguete', ...ing, 'Molho de tomate', 'Queijo'], esp:1});
+  const ESP = (num, ing) => ({id:'e' + num, num, cat:'espaguete', name:'Espaguete ' + pad(num), price:21, sizes:{M:21, G:24}, ing:['Espaguete', ...ing, 'Molho de tomate', 'Queijo'], esp:1});
   P.push(ESP(1, ['Calabresa','Bacon']), ESP(2, ['Frango','Bacon']), ESP(3, ['Frango','Calabresa','Bacon']), ESP(4, ['Frango','Calabresa']));
   const byId = id => P.find(p => p.id === id);
   const isLanche = p => !p.esp;
@@ -664,7 +664,6 @@ textarea:focus,input:focus{outline:none;border-color:var(--blue)}
     const keep = i => !sem.includes(i);
     const cnt = k => p.ing.filter(keep).filter(i => i.toLowerCase().includes(k)).reduce((a, i) => a + count(i), 0);
     const Ls = [[p.forma ? 'formaB' : 'bunB', p.forma ? 16 : 18]];
-    if (keep('Molho Garotinho')) Ls.push(['molho', 5]);
     if (keep('Alface')) Ls.push(['lettuce', 9]);
     if (keep('Tomate')) Ls.push(['tomato', 7]);
     for (let i = 0; i < cnt('bife'); i++) Ls.push(['patty', 16]);
@@ -830,7 +829,7 @@ textarea:focus,input:focus{outline:none;border-color:var(--blue)}
         </g>
       </g></svg>`;
     const m = $('#mascot'), svg = m.querySelector('svg'), pupils = $('#pupils'), head = $('#head'), bubble = $('#bubble'), stage = $('#stage');
-    const SAYS = ['Hmm, que delícia!', 'Molho Garotinho é demais!', 'Toda quinta tem salpicão!', 'Acabou! Agora pede o seu.'];
+    const SAYS = ['Hmm, que delícia!', 'Capricha no cheddar!', 'Toda quinta tem salpicão!', 'Acabou! Agora pede o seu.'];
     let bites = 0, chewT;
     const say = t => { bubble.textContent = t; bubble.classList.remove('say'); void bubble.offsetWidth; bubble.classList.add('say'); };
     function crumbs(){
@@ -879,7 +878,7 @@ textarea:focus,input:focus{outline:none;border-color:var(--blue)}
   // ---------- seções ----------
   $('#catnav').innerHTML = CATS.map(c => `<a href="#${c.id}" data-cat="${c.id}">${c.name}</a>`).join('') + `<a href="#contato" data-cat="contato">Contato</a>`;
   const opcRow = `<div class="opc">${OPC.map(o => `<span>${artFor(o)}${o}</span>`).join('')}</div>`;
-  const band = `<div class="extras-band"><div class="icons">${EXTRAS.map(e => artFor(e[0])).join('')}</div><div><b>Acrescente no seu lanche</b><p>Cheddar ${fmt(5.5)} · Catupiry ${fmt(5)} · Maionese temperada ${fmt(2.3)}</p></div></div>`;
+  const band = `<div class="extras-band"><div class="icons">${EXTRAS.map(e => artFor(e[0])).join('')}</div><div><b>Acrescente no seu lanche</b><p>Cheddar ${fmt(5)} · Catupiry ${fmt(5)} · Maionese temperada ${fmt(2.5)}</p></div></div>`;
   $('#menu').innerHTML = CATS.map((c, ci) => {
     const items = P.filter(p => p.cat === c.id).sort((a, b) => a.num - b.num);
     return `<section class="section" id="${c.id}"><div class="wrap">
